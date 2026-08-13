@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GUIANFA 海外货盘审校诊断报告</title>
+  <style>
+    :root{--navy:#071a38;--navy2:#0c2c60;--blue:#1769e0;--pale:#eaf2ff;--ink:#13243e;--text:#526177;--muted:#8794a6;--line:#dce4ef;--paper:#fbfcfe;--amber:#e49a22;--red:#c94c55}
+    *{box-sizing:border-box} html,body{margin:0;background:#e8edf4;color:var(--ink)}
+    body{font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+    .report{width:1440px;margin:auto;background:var(--paper);box-shadow:0 24px 80px rgba(7,26,56,.14);overflow:hidden}
+    .hero{height:620px;padding:70px 86px;position:relative;color:#fff;background:radial-gradient(circle at 88% 22%,rgba(52,131,255,.26),transparent 25%),linear-gradient(135deg,var(--navy),#071d42 58%,#0d3a7c)}
+    .hero:after{content:"";position:absolute;width:340px;height:340px;right:-100px;top:30px;border:1px solid rgba(105,163,255,.22);transform:rotate(30deg)}
+    .brand{display:flex;align-items:center;gap:28px}.logo{width:102px;height:102px;padding:10px;border-radius:24px;background:#fff;box-shadow:0 12px 30px rgba(0,0,0,.18)}.logo img{width:100%;height:100%;object-fit:contain}
+    .kicker{font-size:18px;letter-spacing:3px;color:#82b2ff;font-weight:700}
+    h1{font-size:66px;line-height:1.1;margin:40px 0 14px;letter-spacing:-1px}.hero .sub{font-size:28px;color:#c8dcff;margin:0}
+    .meta{position:absolute;left:86px;right:86px;bottom:66px;border-top:1px solid rgba(126,175,255,.4);padding-top:24px;display:grid;grid-template-columns:1.2fr 1fr 1fr}
+    .meta small{display:block;color:#78a8f5;font-size:16px;margin-bottom:8px}.meta strong{font-size:23px;font-weight:500}
+    .summary{padding:54px 86px 62px;background:#fff}.label{font-size:17px;letter-spacing:2px;color:var(--blue);font-weight:700}.summary h2,.section h2{font-size:38px;margin:18px 0 22px}.lead{font-size:24px;line-height:1.72;color:var(--text);max-width:1160px;margin:0}
+    .verdict{margin-top:36px;padding:24px 28px;border-left:5px solid var(--red);background:#fff4f4;color:#6f3035;font-size:21px;line-height:1.65}
+    .three{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:42px}.diagnosis{background:var(--paper);padding:34px}.diagnosis b{display:block;color:var(--blue);font-size:18px;margin-bottom:16px}.diagnosis h3{font-size:26px;margin:0 0 12px}.diagnosis p{font-size:18px;color:var(--text);line-height:1.65;margin:0}
+    .section{padding:72px 86px}.section.alt{background:#f4f7fb}.section-head{display:flex;justify-content:space-between;align-items:end;border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:28px}.section-head h2{margin:10px 0 0}.section-head span:last-child{color:var(--muted);font-size:16px}
+    table{width:100%;border-collapse:collapse;table-layout:fixed;background:#fff}th{text-align:left;font-size:16px;color:#63738a;background:#edf3fb;padding:18px 20px;border-bottom:1px solid var(--line)}td{padding:21px 20px;border-bottom:1px solid var(--line);vertical-align:top;font-size:17px;line-height:1.58;color:var(--text)}td strong{color:var(--ink)}.col-product{width:19%}.col-issue{width:49%}.col-fix{width:32%}
+    .risk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.risk{background:#fff;border:1px solid var(--line);padding:28px;min-height:250px}.risk-top{display:flex;justify-content:space-between;gap:20px}.risk h3{font-size:25px;margin:0}.tag{font-size:14px;color:var(--red);background:#fff0f1;padding:7px 11px;height:max-content}.quote{margin:22px 0 12px;padding:16px 18px;background:#f5f7fa;color:#33445c;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:16px;line-height:1.55;word-break:break-word}.risk p{margin:8px 0;color:var(--text);font-size:17px;line-height:1.6}.risk .fix{color:var(--blue);font-weight:600}
+    .product-table td:first-child{color:var(--blue);font-weight:700}.product-table td:nth-child(2){color:var(--ink);font-weight:600}.product-table .high{color:var(--red);font-weight:700}
+    .field-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.field{background:#fff;border-top:4px solid var(--blue);padding:28px 30px}.field h3{font-size:25px;margin:0 0 18px}.field ul{margin:0;padding-left:20px}.field li{font-size:17px;color:var(--text);line-height:1.72;margin:4px 0}
+    .money{display:grid;grid-template-columns:1.1fr .9fr;gap:28px}.money-card{padding:30px;background:#fff;border:1px solid var(--line)}.money-card h3{font-size:25px;margin:0 0 18px}.money-card p,.money-card li{font-size:18px;line-height:1.7;color:var(--text)}.formula{font-size:25px!important;color:var(--blue)!important;font-weight:700;padding:20px;background:var(--pale)}
+    .roadmap{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}.step{padding:32px 26px;border-right:1px solid var(--line);min-height:250px}.step:last-child{border:0}.step small{color:var(--blue);font-weight:700}.step h3{font-size:24px;margin:24px 0 12px}.step p{color:var(--text);font-size:17px;line-height:1.62;margin:0}
+    .deliver{padding:34px 86px;background:linear-gradient(90deg,#0e52c1,#07377f);color:#fff;display:grid;grid-template-columns:260px 1fr;align-items:center}.deliver small{color:#adcbff;letter-spacing:2px}.deliver strong{font-size:23px;font-weight:500}
+    footer{padding:30px 86px 46px;color:#8794a6;font-size:14px;line-height:1.7;background:#fff}
+    @media(max-width:900px){
+      html,body{background:var(--paper)}
+      .report{width:100%;box-shadow:none}
+      .hero{height:auto;min-height:0;padding:28px 20px 30px}
+      .hero:after{width:180px;height:180px;right:-86px;top:28px}
+      .brand{gap:14px}.logo{width:62px;height:62px;padding:6px;border-radius:16px}
+      .kicker{font-size:11px;line-height:1.45;letter-spacing:1.6px;max-width:220px}
+      h1{font-size:38px;line-height:1.18;letter-spacing:-.5px;margin:32px 0 12px}
+      .hero .sub{font-size:18px;line-height:1.55;max-width:330px}
+      .meta{position:relative;left:auto;right:auto;bottom:auto;margin-top:34px;padding-top:20px;grid-template-columns:1fr;gap:16px}
+      .meta small{font-size:12px;margin-bottom:4px}.meta strong{font-size:17px}
+      .summary{padding:38px 20px 44px}.label{font-size:13px;letter-spacing:1.3px}
+      .summary h2,.section h2{font-size:29px;line-height:1.3;margin:12px 0 16px}.lead{font-size:18px;line-height:1.75}
+      .verdict{margin-top:24px;padding:18px;border-left-width:4px;font-size:16px;line-height:1.72}
+      .three{grid-template-columns:1fr;margin-top:28px}.diagnosis{padding:24px}.diagnosis b{font-size:14px;margin-bottom:10px}.diagnosis h3{font-size:22px}.diagnosis p{font-size:16px}
+      .section{padding:48px 20px}.section-head{display:block;padding-bottom:14px;margin-bottom:20px}.section-head h2{margin-bottom:6px}.section-head span:last-child{font-size:13px}
+      table,tbody,tr,td{display:block;width:100%}.section table{background:transparent}.section thead{display:none}
+      table tr{margin-bottom:14px;border:1px solid var(--line);background:#fff;padding:16px 16px 10px;border-radius:10px}
+      table td{border:0;padding:5px 0 10px;font-size:16px;line-height:1.62;color:var(--text)}
+      table td:before{display:block;margin-bottom:3px;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.6px}
+      table td:nth-child(1):before{content:"页码 / 产品"}table td:nth-child(2):before{content:"具体问题"}table td:nth-child(3):before{content:"建议"}
+      .product-table td:nth-child(1):before{content:"产品"}.product-table td:nth-child(2):before{content:"核心问题"}.product-table td:nth-child(3):before{content:"典型错误"}.product-table td:nth-child(4):before{content:"风险"}
+      .risk-grid{grid-template-columns:1fr;gap:14px}.risk{min-height:0;padding:21px;border-radius:10px}.risk h3{font-size:21px}.tag{font-size:12px;white-space:nowrap}.quote{font-size:14px;margin:17px 0 10px;padding:13px}.risk p{font-size:15.5px}
+      .field-grid{grid-template-columns:1fr;gap:14px}.field{padding:24px;border-radius:8px}.field h3{font-size:22px}.field li{font-size:16px}
+      .money{grid-template-columns:1fr;gap:14px}.money-card{padding:22px;border-radius:8px}.money-card h3{font-size:22px}.money-card p,.money-card li{font-size:16px}.formula{font-size:21px!important}
+      .roadmap{grid-template-columns:1fr}.step{min-height:0;padding:24px 6px;border-right:0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}.step h3{font-size:22px;margin:14px 0 8px}.step p{font-size:16px}
+      .deliver{padding:24px 20px;grid-template-columns:1fr;gap:10px}.deliver small{font-size:11px}.deliver strong{font-size:18px;line-height:1.6}
+      footer{padding:24px 20px 36px;font-size:12px}
+    }
+    @media(max-width:390px){h1{font-size:34px}.summary h2,.section h2{font-size:27px}.hero .sub{font-size:17px}.risk-top{gap:10px}}
+  </style>
+</head>
+<body><main class="report">
+  <header class="hero">
+    <div class="brand"><div class="logo"><img src="./融尚GUIANFA诊断报告_logo.png" alt="Logo"></div><div class="kicker">CATALOGUE AUDIT · CLIENT REVIEW</div></div>
+    <h1>海外货盘审校诊断报告</h1><p class="sub">GUIANFA 多语言产品资料与国际贸易适用性核查</p>
+    <div class="meta"><div><small>审校对象</small><strong>融尚货盘报价表 · 零售价 7.14</strong></div><div><small>资料规模</small><strong>34 页 · 41 款产品</strong></div><div><small>审校范围</small><strong>字段 / 翻译 / 报价 / 合规</strong></div></div>
+  </header>
+
+  <section class="summary">
+    <div class="label">00 / EXECUTIVE SUMMARY</div><h2>总体判断</h2>
+    <p class="lead">逐页核对后发现，问题不是零星错字，而是字段模板、翻译质量与贸易信息三方面的系统性缺陷。当前文件可以作为内部产品展示草稿，但不适合直接发送给俄语区客户或正式海外采购商。</p>
+    <div class="verdict"><strong>关键风险：</strong>俄语版已经出现“棘球绦虫、鸭嘴兽、狐狸气味、气球、肌肉、冰淇淋”等严重误译。此类错误会直接改变产品含义、损害品牌专业度，并可能带来合规或客诉风险。建议俄语整套重译，不建议继续逐句修补。</div>
+    <div class="three">
+      <div class="diagnosis"><b>01 / 模板系统</b><h3>多语言字段不统一</h3><p>部分产品缺少英文或韩文，语言标签缺失、错位或导出异常，套装与规格字段也不完整。</p></div>
+      <div class="diagnosis"><b>02 / 翻译系统</b><h3>俄语直译严重失真</h3><p>大量文案按中文字面拆译，出现语义反转、医学与工程词误入、食品化命名等问题。</p></div>
+      <div class="diagnosis"><b>03 / 商务系统</b><h3>不具备正式报价条件</h3><p>虽然文件名为“货盘报价表”，但缺少供货价、MOQ、装箱、库存、交期和贸易条款。</p></div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="section-head"><div><div class="label">01 / FIELD & LAYOUT</div><h2>明确的字段缺失与排版错误</h2></div><span>优先修复硬错误</span></div>
+    <table><thead><tr><th class="col-product">页码 / 产品</th><th class="col-issue">具体问题</th><th class="col-fix">建议</th></tr></thead><tbody>
+      <tr><td><strong>第 1 页总标题</strong></td><td>只有中英文标题，没有俄文、韩文标题；没有版本日期。</td><td>增加版本号，例如 2026-07-14，并统一目标市场语言。</td></tr>
+      <tr><td><strong>#1–#7</strong></td><td>有多语言产品名，但没有“中文 / English / 한국어 / Русский”标签。</td><td>建立统一字段模板，明确每行语言。</td></tr>
+      <tr><td><strong>#8–#12、#19–#21</strong></td><td>“韩文”字段只显示为“文：”，疑似字体嵌入或导出异常。</td><td>修复字体嵌入与导出设置；逐页验证成品。</td></tr>
+      <tr><td><strong>#11、#13</strong></td><td>#11 三条中文卖点挤成一条；#13 韩文与英文名称连在一起，俄文品名不完整。</td><td>恢复独立项目符号；多语言名称强制分行。</td></tr>
+      <tr><td><strong>#14–#16</strong></td><td>#14 缺中文正式品名；#15 缺英文和韩文；#16 英文与韩文标签写反。</td><td>补齐语言并核对标签映射。</td></tr>
+      <tr><td><strong>#17、#18 套装</strong></td><td>没有套装组成、单品规格和数量；英文缺失或仅使用拼音。</td><td>列明每件产品名称、容量与数量；使用功能型英文名称。</td></tr>
+      <tr><td><strong>#27</strong></td><td>缺 GUIANFA 前缀、英文和韩文；零售价显示 ¥0.00 / $0.00。</td><td>核实真实价格并补全所有标准字段。</td></tr>
+      <tr><td><strong>#32、#37–#41</strong></td><td>多款缺英文或韩文；#32 中韩文功效口径不一致；#39–#41 资质信息无编号与材料。</td><td>先核配方和功能，再统一命名；附责任人及 CPNP 通知凭证。</td></tr>
+      <tr><td><strong>第 34 页</strong></td><td>汇率表没有日期和来源，列名“兑人民币汇率”容易反向理解。</td><td>明确“1 CNY = 0.15 USD”、数据日期、来源及报价有效期。</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><div class="label">02 / CRITICAL TRANSLATION RISKS</div><h2>严重翻译错误示例</h2></div><span>代表性案例，不是全部问题</span></div>
+    <div class="risk-grid">
+      <article class="risk"><div class="risk-top"><h3>#14 红球藻 → 寄生虫</h3><span class="tag">严重误译</span></div><div class="quote">Эхинококк</div><p>俄文实际意为“棘球绦虫”。中文原料“红球藻”应先确认是否为雨生红球藻，再使用规范植物学名称。</p><p class="fix">建议：核对 INCI / 拉丁学名后统一翻译。</p></article>
+      <article class="risk"><div class="risk-top"><h3>#24 侧柏叶 → 鸭嘴兽</h3><span class="tag">严重误译</span></div><div class="quote">утконос</div><p>该词意为“鸭嘴兽”，与侧柏叶完全无关；英文 Anti-development 还把“育发”翻成“反发展”。</p><p class="fix">建议：基于真实配方及目标市场法规重写防脱文案。</p></article>
+      <article class="risk"><div class="risk-top"><h3>#28 狐臭 → 狐狸气味</h3><span class="tag">语义错误</span></div><div class="quote">спрей от запаха лисы</div><p>中文“狐臭”被逐字翻成“狐狸气味”。专业资料应使用“腋下异味 / 体味”的标准表达。</p><p class="fix">建议：统一采用 Deodorant / body odor 相关术语。</p></article>
+      <article class="risk"><div class="risk-top"><h3>#30 走珠液 → 气球</h3><span class="tag">产品误判</span></div><div class="quote">Floral Encounter Balloon</div><p>Balloon 是“气球”，不是走珠瓶；正确品类概念应为 Roll-On Deodorant。</p><p class="fix">建议：建立品类术语库，锁定 Roll-On 等基础词。</p></article>
+      <article class="risk"><div class="risk-top"><h3>#6 面霜 → 桃味冰淇淋</h3><span class="tag">产品误判</span></div><div class="quote">Мороженое персиковое</div><p>俄文名称意为“桃味冰淇淋”，客户可能直接理解为食品；“上脸”也被拆成“脸的上半部分”。</p><p class="fix">建议：使用“桃香冰沙质地面霜”等护肤语境表达。</p></article>
+      <article class="risk"><div class="risk-top"><h3>#41 眼部精华 → 苍白眼睛</h3><span class="tag">定位错误</span></div><div class="quote">Сыворотка для бледных глаз<br>Bright Pale Eye Serum</div><p>“Pale”带有苍白、病态含义，无法表达“焕亮淡纹”。</p><p class="fix">建议英文：GUIANFA 360° Brightening & Line-Smoothing Eye Serum。</p></article>
+      <article class="risk"><div class="risk-top"><h3>#3 褪红 → 喷出泛红</h3><span class="tag">语义反转</span></div><div class="quote">брызги быстрого покраснения</div><p>原意“一喷快速褪红”被翻成接近“喷出快速泛红”，方向完全相反。</p><p class="fix">建议：改写为帮助降温并舒缓晒后泛红与不适。</p></article>
+      <article class="risk"><div class="risk-top"><h3>#39 提拉轮廓 → 使轮廓松弛</h3><span class="tag">语义反转</span></div><div class="quote">подтяжка и ослабление контуров</div><p>俄文变成“提拉并使轮廓松弛”，与中文功效目标相反。</p><p class="fix">建议：功效句必须做母语级审校与反向核对。</p></article>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="section-head"><div><div class="label">03 / AFFECTED PRODUCTS</div><h2>重点受影响产品清单</h2></div><span>按问题类型合并梳理</span></div>
+    <table class="product-table"><thead><tr><th style="width:15%">产品</th><th style="width:31%">核心问题</th><th style="width:39%">典型错误</th><th style="width:15%">风险</th></tr></thead><tbody>
+      <tr><td>#1–#7</td><td>名称和俄文卖点直译</td><td>cleansing honey、不糊肤→无眩光、肌肤→肌肉、童颜→Teen</td><td class="high">高</td></tr>
+      <tr><td>#9–#13</td><td>成分、功效与系列名误译</td><td>“凝血酸”疑似原文错误；Dimension C；御龄→皇家年龄；葡茶→葡萄牙茶</td><td class="high">高</td></tr>
+      <tr><td>#14–#16</td><td>原料与功效严重失真</td><td>红球藻→棘球绦虫；双仓→双料斗；熟龄肌→成熟肌肉</td><td class="high">极高</td></tr>
+      <tr><td>#17–#18</td><td>套装信息缺失</td><td>没有套装组成与容量；英文仅拼音，客户无法理解功能</td><td class="high">高</td></tr>
+      <tr><td>#19–#21</td><td>“水光液”术语错误</td><td>被翻成磷光物、发光体等化学材料概念</td><td class="high">高</td></tr>
+      <tr><td>#23–#27</td><td>洗护术语和价格问题</td><td>高颅顶→高颅骨氛围；侧柏叶→鸭嘴兽；头发分叉→工程“分岔”；#27 零价</td><td class="high">极高</td></tr>
+      <tr><td>#28–#32</td><td>止汗 / 抑味品类混乱</td><td>狐臭→狐狸气味；走珠→身体珠子液/气球；香体与止汗功效不一致</td><td class="high">极高</td></tr>
+      <tr><td>#33–#36</td><td>防晒证据不足</td><td>缺 SPF / UVA / 防水测试；“户外游泳不易脱”→“不容易起飞”</td><td class="high">极高</td></tr>
+      <tr><td>#37–#41</td><td>高功效产品与资质表达不严谨</td><td>肌底→肌肉基础；自愈力偏医疗；CPNP 未附证明；眼部精华→苍白眼睛</td><td class="high">极高</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><div class="label">04 / MISSING BUSINESS FIELDS</div><h2>全册系统性缺失的商务字段</h2></div><span>正式海外报价的必要信息</span></div>
+    <div class="field-grid">
+      <div class="field"><h3>产品身份信息</h3><ul><li>SKU / 货号与条形码</li><li>产品类别、产地、生产企业</li><li>品牌持有人与保质期</li><li>生产日期或批次说明</li><li>全成分表 / INCI 表</li><li>适用肤质、使用方法与注意事项</li></ul></div>
+      <div class="field"><h3>贸易报价信息</h3><ul><li>出厂价 / 供货价与建议零售价区分</li><li>MOQ、每箱装量、毛重净重和箱规</li><li>现货库存与交货周期</li><li>报价有效期与付款条件</li><li>EXW / FOB / CIF 等贸易条款</li><li>OEM / ODM 能力与样品政策</li></ul></div>
+      <div class="field"><h3>合规证明信息</h3><ul><li>备案或注册信息</li><li>欧盟责任人名称与地址</li><li>CPNP 通知证明，而非“CPNP认证”</li><li>防晒 SPF / UVA / 防水测试</li><li>美白、防脱、抗皱、抑菌、止汗证据</li><li>MSDS、COA、GMP / ISO 资料</li></ul></div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="section-head"><div><div class="label">05 / PRICE & EXCHANGE RATE</div><h2>价格与汇率问题</h2></div><span>数值基本正确，商务口径不完整</span></div>
+    <div class="money"><div class="money-card"><h3>核对结果</h3><ul><li>人民币价格 × 0.15 后，美元数值基本计算正确。</li><li>例如 ¥148 × 0.15 = $22.20；¥2689 × 0.15 = $403.35。</li><li>#27 的 ¥0 / $0 明显不合理，必须核价。</li><li>当前美元价只是人民币零售价换算，不等于出口成交价。</li></ul></div><div class="money-card"><h3>建议标准表述</h3><p class="formula">1 CNY = 0.15 USD</p><p>汇率仅供价格展示；实际结算以订单确认日汇率及合同约定为准。必须同时标注汇率日期、数据来源和报价有效期。</p></div></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><div class="label">06 / REMEDIATION ROADMAP</div><h2>建议整改路线图</h2></div><span>先止损，再重建</span></div>
+    <div class="roadmap">
+      <div class="step"><small>STEP 01</small><h3>立即修正硬错误</h3><p>下架当前俄语版对外传播；修正 #27 零价、标签错位、字段缺失与中文原文疑错。</p></div>
+      <div class="step"><small>STEP 02</small><h3>建立主数据表</h3><p>以 SKU 为核心统一中文名称、规格、成分、功效、价格、箱规、库存、资质和贸易字段。</p></div>
+      <div class="step"><small>STEP 03</small><h3>整套专业重译</h3><p>先完成规范英文母版，再由母语译员产出俄文和韩文；建立品类与成分术语库。</p></div>
+      <div class="step"><small>STEP 04</small><h3>合规与交付验收</h3><p>逐项核验证据与目标市场表述，执行语言、价格、排版、附件四轮交叉验收。</p></div>
+    </div>
+  </section>
+
+  <div class="deliver"><small>RECOMMENDED DELIVERY</small><strong>中文产品主数据表 + 英文采购报价版 + 俄语 / 韩语本地化版 + 合规资质附件包</strong></div>
+  <footer>审校依据：《融尚货盘报价表_零售价7.14》｜本报告用于产品资料与海外商务文件优化，不替代目标市场法律、法规或监管机构的正式合规审查。</footer>
+</main></body></html>
